@@ -4,8 +4,22 @@ function caesar(message, shift) {
   let result = "";
   for (let i = 0; i < message.length; i++) {
     const numCode = message.charCodeAt(i);
-    if ((numCode >= 65 && numCode <= 90) || (numCode >= 95 && numCode <= 122)) {
-      result += String.fromCharCode(numCode + shift);
+    if (numCode >= 65 && numCode <= 90) {
+      let alphabeticCode = numCode - 65 + shift;
+
+      if (alphabeticCode > 25) {
+        alphabeticCode -= 26;
+      }
+      alphabeticCode += 65;
+      result += String.fromCharCode(alphabeticCode);
+    } else if (numCode >= 97 && numCode <= 122) {
+      let alphabeticCode = numCode - 97 + shift;
+
+      if (alphabeticCode > 25) {
+        alphabeticCode -= 26;
+      }
+      alphabeticCode += 97;
+      result += String.fromCharCode(alphabeticCode);
     } else {
       result += message[i];
     }
@@ -13,4 +27,4 @@ function caesar(message, shift) {
   return result;
 }
 
-console.log(caesar("z", 3)); // should print KHOOR
+console.log(caesar("Hello, Worlz!", -3));
