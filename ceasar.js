@@ -8,7 +8,9 @@ function caesar(message, shift) {
       let alphabeticCode = numCode - 65 + shift;
 
       if (alphabeticCode > 25) {
-        alphabeticCode -= 26;
+        alphabeticCode = alphabeticCode % 26;
+      } else if (alphabeticCode < 0) {
+        alphabeticCode += 26;
       }
       alphabeticCode += 65;
       result += String.fromCharCode(alphabeticCode);
@@ -16,7 +18,9 @@ function caesar(message, shift) {
       let alphabeticCode = numCode - 97 + shift;
 
       if (alphabeticCode > 25) {
-        alphabeticCode -= 26;
+        alphabeticCode = alphabeticCode % 26;
+      } else if (alphabeticCode < 0) {
+        alphabeticCode += 26;
       }
       alphabeticCode += 97;
       result += String.fromCharCode(alphabeticCode);
@@ -27,4 +31,4 @@ function caesar(message, shift) {
   return result;
 }
 
-console.log(caesar("Hello, Worlz!", -3));
+console.log(caesar("abc", -1));
