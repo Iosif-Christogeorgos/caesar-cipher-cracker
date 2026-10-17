@@ -10,7 +10,8 @@ function caesar(message, shift) {
       if (alphabeticCode > 25) {
         alphabeticCode = alphabeticCode % 26;
       } else if (alphabeticCode < 0) {
-        alphabeticCode += 26;
+        alphabeticCode = (alphabeticCode % 26) + 26;
+        if (alphabeticCode === 26) alphabeticCode = 0;
       }
       alphabeticCode += 65;
       result += String.fromCharCode(alphabeticCode);
@@ -20,7 +21,8 @@ function caesar(message, shift) {
       if (alphabeticCode > 25) {
         alphabeticCode = alphabeticCode % 26;
       } else if (alphabeticCode < 0) {
-        alphabeticCode += 26;
+        alphabeticCode = (alphabeticCode % 26) + 26;
+        if (alphabeticCode === 26) alphabeticCode = 0;
       }
       alphabeticCode += 97;
       result += String.fromCharCode(alphabeticCode);
@@ -31,4 +33,4 @@ function caesar(message, shift) {
   return result;
 }
 
-console.log(caesar("abc", -1));
+console.log(caesar("ABC", -26));
