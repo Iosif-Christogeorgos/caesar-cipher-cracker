@@ -33,4 +33,12 @@ function caesar(message, shift) {
   return result;
 }
 
-console.log(caesar("ABC", -26));
+function crackCipher(input) {
+  for (let i = 0; i < 26; i++) {
+    console.log(`shift ${i}: ` + caesar(input, i));
+  }
+}
+
+crackCipher(
+  "Upjl dvyr. Fvb qbza jyhjrlk fvby mpyza jpwoly dpaovba ruvdpun aol rlf.",
+);
