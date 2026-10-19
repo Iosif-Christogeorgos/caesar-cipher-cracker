@@ -34,11 +34,41 @@ function caesar(message, shift) {
 }
 
 function crackCipher(input) {
+  const commonWords = [
+    "the",
+    "and",
+    "you",
+    "to",
+    "a",
+    "of",
+    "is",
+    "it",
+    "in",
+    "on",
+    "at",
+    "have",
+  ];
+  let maxCommonWordCounter = 0;
+  let chosenSentence = "";
   for (let i = 0; i < 26; i++) {
-    console.log(`shift ${i}: ` + caesar(input, i));
+    let decryptedData = caesar(input, i);
+    let checkwordsArray = decryptedData.split(" ");
+    let words = 0;
+    for (let word of checkwordsArray) {
+      if (commonWords.includes(word)) {
+        words++;
+      }
+    }
+    if (words > maxCommonWordCounter) {
+      chosenSentence = decryptedData;
+      maxCommonWordCounter = words;
+    }
   }
+  return chosenSentence;
 }
 
-crackCipher(
-  "Upjl dvyr. Fvb qbza jyhjrlk fvby mpyza jpwoly dpaovba ruvdpun aol rlf.",
+console.log(
+  crackCipher(
+    "Upjl dvyr. Fvb qbza jyhjrlk fvby mpyza jpwoly dpaovba ruvdpun aol rlf.",
+  ),
 );
