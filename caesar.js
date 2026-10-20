@@ -1,4 +1,6 @@
-"use strict";
+export { caesar, crackCipher };
+
+const commonWords = "the and you to a of is it are in on at have".split(" ");
 
 function caesar(message, shift) {
   let result = "";
@@ -34,25 +36,11 @@ function caesar(message, shift) {
 }
 
 function crackCipher(input) {
-  const commonWords = [
-    "the",
-    "and",
-    "you",
-    "to",
-    "a",
-    "of",
-    "is",
-    "it",
-    "in",
-    "on",
-    "at",
-    "have",
-  ];
   let maxCommonWordCounter = 0;
   let chosenSentence = "";
   for (let i = 0; i < 26; i++) {
     let decryptedData = caesar(input, i);
-    let checkwordsArray = decryptedData.split(" ");
+    let checkwordsArray = decryptedData.toLowerCase().split(" ");
     let words = 0;
     for (let word of checkwordsArray) {
       if (commonWords.includes(word)) {
@@ -64,11 +52,6 @@ function crackCipher(input) {
       maxCommonWordCounter = words;
     }
   }
-  return chosenSentence;
+  if (maxCommonWordCounter > 0) return chosenSentence;
+  else return "No English found";
 }
-
-console.log(
-  crackCipher(
-    "Upjl dvyr. Fvb qbza jyhjrlk fvby mpyza jpwoly dpaovba ruvdpun aol rlf.",
-  ),
-);
